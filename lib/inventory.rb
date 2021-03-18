@@ -1,3 +1,4 @@
+require "inventory/node"
 require "inventory/version"
 
 module Inventory

@@ -5,26 +5,12 @@
 #
 # Call-seq: ./inventory.rb -F form_factor=Server -v
 
+require 'inventory'
 require 'mcollective'
 require 'skittlize'
 require 'terminal-table'
 
 include MCollective::RPC # rubocop:disable Style/MixinUsage
-
-class Node
-  attr_reader :identity, :classes, :agents
-
-  def initialize(resp)
-    @identity = resp[:sender]
-    @facts    = resp[:data][:facts]
-    @classes  = resp[:data][:classes]
-    @agents   = resp[:data][:agents]
-  end
-
-  def fact(name)
-    @facts.dig(*name.to_s.split('.'))
-  end
-end
 
 # rubocop:disable Layout/HashAlignment
 column_specs = {
@@ -108,7 +94,7 @@ util.class_filter(options[:class_filter]) if options[:class_filter]
 nodes = []
 
 util.inventory do |_, resp|
-  node = Node.new(resp)
+  node = Inventory::Node.new(resp)
 
   nodes << node
 end
