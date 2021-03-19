@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Inventory
   class Node
     attr_reader :identity, :classes, :agents

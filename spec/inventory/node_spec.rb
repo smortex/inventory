@@ -1,20 +1,22 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 RSpec.describe Inventory::Node do
   subject(:node) do
     Inventory::Node.new({
-      sender: 'example.com',
-      data: {
-        facts: {
-          'osfamily' => 'FreeBSD',
-          'os' => {
-            'family' => 'FreeBSD',
-          }
-        },
-        classes: [],
-        agents: [],
-      }
-    })
+                          sender: 'example.com',
+                          data: {
+                            facts: {
+                              'osfamily' => 'FreeBSD',
+                              'os' => {
+                                'family' => 'FreeBSD',
+                              }
+                            },
+                            classes: [],
+                            agents: [],
+                          }
+                        })
   end
 
   context '#fact' do
