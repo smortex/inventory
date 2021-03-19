@@ -1,3 +1,4 @@
+require "inventory/formatter"
 require "inventory/node"
 require "inventory/version"
 
