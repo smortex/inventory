@@ -1,0 +1,55 @@
+#!/opt/puppetlabs/puppet/bin/ruby
+# frozen_string_literal: true
+
+require 'inventory'
+require 'optparse'
+require 'puppetdb'
+
+formatter = Inventory::Formatter.new
+
+filters = []
+
+oparser = Inventory::OptionParser.new
+
+oparser.parse do |parser, _formatter|
+  parser.separator ''
+  parser.separator 'Host Filters'
+
+  # FIXME: Add support for -C, -A, -I
+  parser.on('-F', '--wf', '--with-fact fact=val', 'Match hosts with a certain fact') do |with_fact|
+    name, value = with_fact.split('=')
+    operator = '='
+
+    if value =~ %r{\A/.*/\z}
+      value = value[1..-2]
+      operator = '~'
+    end
+
+    filters << "certname in facts[certname] { name = '#{name}' and value #{operator} '#{value}' }"
+  end
+end
+
+formatter = oparser.formatter
+
+client = PuppetDB::Client.new
+
+response = client.request('', "facts[certname, name, value] { #{filters.map { |f| "(#{f})" }.join(' and ')} }")
+
+resources = response.data
+
+nodes = Hash.new { |hash, value| hash[value] = {} }
+
+resources.each do |fact|
+  nodes[fact['certname']][fact['name']] = fact['value']
+end
+
+nodes.each do |sender, facts|
+  formatter.nodes << Inventory::Node.new({
+                                           sender: sender,
+                                           data: {
+                                             facts: facts,
+                                           },
+                                         })
+end
+
+puts formatter.to_s
