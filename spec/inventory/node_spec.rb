@@ -4,7 +4,7 @@ require 'spec_helper'
 
 RSpec.describe Inventory::Node do
   subject(:node) do
-    Inventory::Node.new({
+    described_class.new({
                           sender: 'example.com',
                           data: {
                             facts: {
@@ -30,7 +30,7 @@ RSpec.describe Inventory::Node do
                         })
   end
 
-  context '#fact' do
+  describe '#fact' do
     subject do
       node.fact(fact)
     end
@@ -59,7 +59,7 @@ RSpec.describe Inventory::Node do
       it { is_expected.to be_nil }
     end
 
-    context 'array traversal' do
+    context 'when traversing an array' do
       context 'with an existing dotted notation fact' do
         let(:fact) { 'netwoking.interfaces.lo0.bindings.0.address' }
 
