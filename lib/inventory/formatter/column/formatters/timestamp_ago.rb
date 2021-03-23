@@ -12,7 +12,7 @@ module Inventory
           include Inventory::Utils::TimeAgo
 
           def format(value)
-            retunr nil unless value
+            return nil unless value
 
             seconds_to_human(Time.now - Time.at(Integer(value)))
           end
