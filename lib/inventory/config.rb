@@ -9,7 +9,7 @@ module Inventory
     def initialize
       @columns = %w[host customer role]
       @sort_by = %w[customer host]
-      @columns_spec = Hash.new { {} }
+      @columns_spec = Hash.new { {} }.merge(default_columns_spec)
 
       load_system_config
       load_user_config
@@ -40,6 +40,18 @@ module Inventory
       @sort_by = config.delete('sort_by') if config.key?('sort_by')
 
       @columns_spec.merge!(config.delete('columns_spec')) if config.key?('columns_spec')
+    end
+
+    def default_columns_spec
+      {
+        'host' => {
+          'resolver' => 'identity'
+        },
+        'customer' => {
+          'formatter' => 'ellipsis',
+          'max_length' => 20,
+        },
+      }
     end
   end
 end
