@@ -2,6 +2,12 @@
 
 module Inventory
   module Utils
+    module SnakeToCamel
+      def snake_to_camel_case(subject)
+        subject.split('_').map(&:capitalize).join
+      end
+    end
+
     module TimeAgo
       def seconds_to_human(value)
         return nil unless value

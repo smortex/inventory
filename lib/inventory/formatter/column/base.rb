@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'inventory/utils'
+
 module Inventory
   class Formatter
     module Column
@@ -7,6 +9,8 @@ module Inventory
         attr_accessor :name
         attr_writer :human_name
         attr_reader :formatter
+
+        include Inventory::Utils::SnakeToCamel
 
         def initialize(name, options)
           options ||= {}
@@ -16,7 +20,7 @@ module Inventory
           @formatter = options.delete('formatter') if options.key?('formatter')
           @align = options.delete('align')
 
-          @formatter = Object.const_get("Inventory::Formatter::Column::Formatters::#{@formatter.capitalize}").new(options) if @formatter
+          @formatter = Object.const_get("Inventory::Formatter::Column::Formatters::#{snake_to_camel_case(@formatter)}").new(options) if @formatter
 
           puts "unused keys for column #{name}: #{options.keys.join(', ')}" if options.keys.any?
         end
