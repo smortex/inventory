@@ -8,7 +8,12 @@ Please expect quite a lot of changes with this code, I think it will be split in
 
 ## Installation
 
-Do not install this for now.  Just clone the repo, `bundle install` and `bundle exec ./exe/...`…
+Take care to install this tool in the Puppet envrionment.  If you are using the AIO package, you can build and install like this:
+
+```
+/opt/puppetlabs/puppet/bin/gem build inventory.gemspec
+sudo /opt/puppetlabs/puppet/bin/gem install --bindir /opt/puppetlabs/bin inventory-x.y.z.gem
+```
 
 ## Usage
 
