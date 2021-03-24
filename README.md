@@ -6,6 +6,16 @@ A gem to get inventories of nodes in a Puppet / Choria deployment.
 
 Please expect quite a lot of changes with this code, I think it will be split in 3 gems at the end, and none of them will be called `inventory`.
 
+## Development
+
+In order to use the Puppet envrionment, use the version of bundler bundled with Puppet:
+
+```
+/opt/puppetlabs/puppet/bin/bundle install
+/opt/puppetlabs/puppet/bin/bundle exec rake spec
+/opt/puppetlabs/puppet/bin/bundle exec exe/inventory
+```
+
 ## Installation
 
 Take care to install this tool in the Puppet envrionment.  If you are using the AIO package, you can build and install like this:
@@ -29,13 +39,13 @@ Both have a similar feature-set, and a full list of available options can be obt
 #### Which nodes are currently up and running
 
 ```sh-session
-romain@zappy inventory % bundle exec ./exe/inventory
+romain@zappy inventory % inventory
 ```
 
 #### Which nodes are known to puppet
 
 ```sh-session
-romain@zappy inventory % bundle exec ./exe/pdb-inventory
+romain@zappy inventory % pdb-inventory
 ```
 
 ### Accessing facts
@@ -45,7 +55,7 @@ By default, the report display the node name, along with it's `customer` and `ro
 #### Add more facts to the output
 
 ```sh-session
-romain@zappy inventory % bundle exec ./exe/inventory -a datacenter,city,country
+romain@zappy inventory % inventory -a datacenter,city,country
 ```
 
 ### Filtering
@@ -55,14 +65,8 @@ The usual filtering knobs are available for the choria inventory script.  The pu
 #### Which nodes have burned in Strasbourg
 
 ```sh-session
-romain@zappy inventory % bundle exec ./exe/pdb-inventory -F datacenter=/sbg/
+romain@zappy inventory % pdb-inventory -F datacenter=/sbg/
 ```
-
-## Development
-
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
-
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
 
 ## Contributing
 
