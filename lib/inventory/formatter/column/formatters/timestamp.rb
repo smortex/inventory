@@ -9,6 +9,8 @@ module Inventory
         class Timestamp < Base
           def format(value)
             Time.at(Integer(value)).getlocal.to_s
+          rescue ArgumentError
+            nil
           end
         end
       end

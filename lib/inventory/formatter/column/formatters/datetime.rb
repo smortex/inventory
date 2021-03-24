@@ -9,6 +9,8 @@ module Inventory
         class Datetime < Base
           def format(value)
             DateTime.parse(value).to_time.getlocal.to_s
+          rescue ArgumentError
+            nil
           end
         end
       end

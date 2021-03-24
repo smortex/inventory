@@ -15,6 +15,8 @@ module Inventory
             return nil unless value
 
             seconds_to_human(Time.now - Time.at(Integer(value)))
+          rescue ArgumentError
+            nil
           end
         end
       end

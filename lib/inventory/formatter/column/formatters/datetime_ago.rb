@@ -15,6 +15,8 @@ module Inventory
             return nil unless value
 
             seconds_to_human(Time.now - DateTime.parse(value).to_time)
+          rescue ArgumentError
+            nil
           end
         end
       end
