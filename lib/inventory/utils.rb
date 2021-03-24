@@ -20,7 +20,7 @@ module Inventory
           'm' => 60,
           'h' => 24,
         }.each do |unit, count|
-          res << "#{value % count}#{unit}"
+          res << sprintf('%2d%s', value % count, unit)
           value /= count
 
           break if value.zero?
