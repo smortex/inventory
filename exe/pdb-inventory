@@ -5,6 +5,18 @@ require 'inventory'
 require 'optparse'
 require 'puppetdb'
 
+def fact_filter(fact)
+  name, value = fact.split('=')
+  operator = '='
+
+  if value =~ %r{\A/.*/\z}
+    value = value[1..-2]
+    operator = '~'
+  end
+
+  "certname in facts[certname] { name = '#{name}' and value #{operator} '#{value}' }"
+end
+
 filters = []
 
 oparser = Inventory::OptionParser.new
@@ -15,16 +27,10 @@ oparser.parse do |parser, _formatter|
 
   # FIXME: Add support for -C, -A, -I
   parser.on('-F', '--wf', '--with-fact fact=val', 'Match hosts with a certain fact') do |with_fact|
-    name, value = with_fact.split('=')
-    operator = '='
-
-    if value =~ %r{\A/.*/\z}
-      value = value[1..-2]
-      operator = '~'
-    end
-
-    filters << "certname in facts[certname] { name = '#{name}' and value #{operator} '#{value}' }"
+    filters << fact_filter(with_fact)
   end
+
+
 end
 
 formatter = oparser.formatter
