@@ -5,8 +5,6 @@ require 'inventory'
 require 'optparse'
 require 'puppetdb'
 
-formatter = Inventory::Formatter.new
-
 filters = []
 
 oparser = Inventory::OptionParser.new
