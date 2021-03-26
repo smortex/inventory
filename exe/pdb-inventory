@@ -5,6 +5,10 @@ require 'inventory'
 require 'optparse'
 require 'puppetdb'
 
+def class_filter(klass)
+  "certname in resources[certname] { type = 'Class' and title = '#{klass.split('::').map(&:capitalize).join('::')}' }"
+end
+
 def fact_filter(fact)
   name, value = fact.split('=')
   operator = '='
@@ -25,7 +29,10 @@ oparser.parse do |parser, _formatter|
   parser.separator ''
   parser.separator 'Host Filters'
 
-  # FIXME: Add support for -C, -A, -I
+  parser.on('-C', '--wc', '--with-class CLASS', 'Match hosts with a certain config management class') do |with_class|
+    filters << class_filter(with_class)
+  end
+
   parser.on('-F', '--wf', '--with-fact fact=val', 'Match hosts with a certain fact') do |with_fact|
     filters << fact_filter(with_fact)
   end
