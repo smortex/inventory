@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-require 'inventory'
+require 'motoko'
 require 'optparse'
 require 'puppetdb'
 
@@ -23,7 +23,7 @@ end
 
 filters = []
 
-oparser = Inventory::OptionParser.new
+oparser = Motoko::OptionParser.new
 
 options = {}
 
@@ -39,7 +39,7 @@ oparser.parse do |parser|
     filters << fact_filter(with_fact)
   end
 
-  Inventory::OptionParser.add_shortcut_options(parser, oparser.formatter, options)
+  Motoko::OptionParser.add_shortcut_options(parser, oparser.formatter, options)
 end
 
 (options[:with_class] || []).compact.each do |klass|
@@ -63,12 +63,12 @@ resources.each do |fact|
 end
 
 nodes.each do |sender, facts|
-  oparser.formatter.nodes << Inventory::Node.new({
-                                                   sender: sender,
-                                                   data: {
-                                                     facts: facts,
-                                                   },
-                                                 })
+  oparser.formatter.nodes << Motoko::Node.new({
+                                                sender: sender,
+                                                data: {
+                                                  facts: facts,
+                                                },
+                                              })
 end
 
 puts oparser.formatter.to_s

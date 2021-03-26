@@ -4,7 +4,7 @@ A gem to get inventories of nodes in a Puppet / Choria deployment.
 
 *THIS IS CURRENTLY A WIP AND WILL BURN YOUR NODES*
 
-Please expect quite a lot of changes with this code, I think it will be split in 3 gems at the end, and none of them will be called `inventory`.
+Please expect quite a lot of changes with this code.
 
 ## Development
 
@@ -21,8 +21,8 @@ In order to use the Puppet envrionment, use the version of bundler bundled with 
 Take care to install this tool in the Puppet envrionment.  If you are using the AIO package, you can build and install like this:
 
 ```
-/opt/puppetlabs/puppet/bin/gem build inventory.gemspec
-sudo /opt/puppetlabs/puppet/bin/gem install --bindir /opt/puppetlabs/bin inventory-x.y.z.gem
+/opt/puppetlabs/puppet/bin/gem build motoko.gemspec
+sudo /opt/puppetlabs/puppet/bin/gem install --bindir /opt/puppetlabs/bin motoko-x.y.z.gem
 ```
 
 ## Usage
@@ -39,13 +39,13 @@ Both have a similar feature-set, and a full list of available options can be obt
 #### Which nodes are currently up and running
 
 ```sh-session
-romain@zappy inventory % inventory
+romain@zappy ~ % inventory
 ```
 
 #### Which nodes are known to puppet
 
 ```sh-session
-romain@zappy inventory % pdb-inventory
+romain@zappy ~ % pdb-inventory
 ```
 
 ### Accessing facts
@@ -55,7 +55,7 @@ By default, the report display the node name, along with it's `customer` and `ro
 #### Add more facts to the output
 
 ```sh-session
-romain@zappy inventory % inventory -a datacenter,city,country
+romain@zappy ~ % inventory -a datacenter,city,country
 ```
 
 ### Filtering
@@ -65,7 +65,7 @@ The usual filtering knobs are available for the choria inventory script.  The pu
 #### Which nodes have burned in Strasbourg
 
 ```sh-session
-romain@zappy inventory % pdb-inventory -F datacenter=/sbg/
+romain@zappy ~ % pdb-inventory -F datacenter=/sbg/
 ```
 ## Configuration
 
@@ -89,7 +89,7 @@ This add a new command switch `--dc` equivalent to `--add-columns datacenter,ser
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/smortex/inventory. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/smortex/inventory/blob/master/CODE_OF_CONDUCT.md).
+Bug reports and pull requests are welcome on GitHub at https://github.com/smortex/motoko. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/smortex/motoko/blob/master/CODE_OF_CONDUCT.md).
 
 
 ## License
@@ -98,4 +98,4 @@ The gem is available as open source under the terms of the [MIT License](https:/
 
 ## Code of Conduct
 
-Everyone interacting in the Inventory project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/smortex/inventory/blob/master/CODE_OF_CONDUCT.md).
+Everyone interacting in the Inventory project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/smortex/motoko/blob/master/CODE_OF_CONDUCT.md).

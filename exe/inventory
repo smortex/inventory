@@ -5,23 +5,23 @@
 #
 # Call-seq: ./inventory.rb -F form_factor=Server -v
 
-require 'inventory'
+require 'motoko'
 require 'mcollective'
 
 include MCollective::RPC # rubocop:disable Style/MixinUsage
 
-formatter = Inventory::Formatter.new
+formatter = Motoko::Formatter.new
 
 options = rpcoptions do |parser, local_options|
   parser.banner = "usage: #{File.basename(__FILE__)} [options]"
 
-  Inventory::OptionParser.add_inventory_options(parser, formatter)
+  Motoko::OptionParser.add_inventory_options(parser, formatter)
 
   parser.on('--[no-]stats', 'Display statistics') do |v|
     local_options[:stats] = v
   end
 
-  Inventory::OptionParser.add_shortcut_options(parser, formatter, local_options)
+  Motoko::OptionParser.add_shortcut_options(parser, formatter, local_options)
 end
 
 options[:stats] = true if options[:stats].nil?
@@ -38,7 +38,7 @@ end
 end
 
 util.inventory do |_, resp|
-  formatter.nodes << Inventory::Node.new(resp)
+  formatter.nodes << Motoko::Node.new(resp)
 end
 
 puts formatter.to_s
