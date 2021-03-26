@@ -59,5 +59,20 @@ module Inventory
         formatter.sort_by = columns
       end
     end
+
+    def self.add_shortcut_options(parser, formatter, local_options)
+      parser.separator ''
+      parser.separator 'Shortcuts'
+
+      formatter.shortcuts.each do |key, value|
+        parser.on("--#{key}", value.delete('description')) do
+          formatter.columns += value['add_columns']
+          local_options[:with_class] ||= []
+          local_options[:with_class].push(*value.delete('with_class'))
+          local_options[:with_fact] ||= []
+          local_options[:with_fact].push(*value.delete('with_fact'))
+        end
+      end
+    end
   end
 end

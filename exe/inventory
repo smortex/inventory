@@ -20,6 +20,8 @@ options = rpcoptions do |parser, local_options|
   parser.on('--[no-]stats', 'Display statistics') do |v|
     local_options[:stats] = v
   end
+
+  Inventory::OptionParser.add_shortcut_options(parser, formatter, local_options)
 end
 
 options[:stats] = true if options[:stats].nil?
@@ -27,7 +29,13 @@ options[:stats] = true if options[:stats].nil?
 util = rpcclient('rpcutil', options: options)
 util.progress = false
 
-util.class_filter(options[:class_filter]) if options[:class_filter]
+(options[:with_class] || []).compact.each do |klass|
+  util.class_filter(klass)
+end
+
+(options[:with_fact] || []).compact.each do |fact|
+  util.fact_filter(fact)
+end
 
 util.inventory do |_, resp|
   formatter.nodes << Inventory::Node.new(resp)

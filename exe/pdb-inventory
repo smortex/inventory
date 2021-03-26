@@ -25,7 +25,9 @@ filters = []
 
 oparser = Inventory::OptionParser.new
 
-oparser.parse do |parser, _formatter|
+options = {}
+
+oparser.parse do |parser|
   parser.separator ''
   parser.separator 'Host Filters'
 
@@ -37,10 +39,16 @@ oparser.parse do |parser, _formatter|
     filters << fact_filter(with_fact)
   end
 
-
+  Inventory::OptionParser.add_shortcut_options(parser, oparser.formatter, options)
 end
 
-formatter = oparser.formatter
+(options[:with_class] || []).compact.each do |klass|
+  filters << class_filter(klass)
+end
+
+(options[:with_fact] || []).compact.each do |fact|
+  filters << fact_filter(fact)
+end
 
 client = PuppetDB::Client.new
 
@@ -55,12 +63,12 @@ resources.each do |fact|
 end
 
 nodes.each do |sender, facts|
-  formatter.nodes << Inventory::Node.new({
-                                           sender: sender,
-                                           data: {
-                                             facts: facts,
-                                           },
-                                         })
+  oparser.formatter.nodes << Inventory::Node.new({
+                                                   sender: sender,
+                                                   data: {
+                                                     facts: facts,
+                                                   },
+                                                 })
 end
 
-puts formatter.to_s
+puts oparser.formatter.to_s

@@ -67,6 +67,25 @@ The usual filtering knobs are available for the choria inventory script.  The pu
 ```sh-session
 romain@zappy inventory % pdb-inventory -F datacenter=/sbg/
 ```
+## Configuration
+
+At startup, the tools will system-wide configuration from `/etc/motoko/config.yaml`, and then user configuration from `~/.config/motoko/config.yaml`.
+
+### Shortcuts
+
+```yaml
+shortcuts:
+  dc:
+    description: "Show physical node locations"
+    add_columns:
+      - "datacenter"
+      - "server_rack"
+      - "server_id"
+    with_fact:
+      - "virtual=physical"
+```
+
+This add a new command switch `--dc` equivalent to `--add-columns datacenter,server_rack,server_id --with-fact virtual=physical`.
 
 ## Contributing
 

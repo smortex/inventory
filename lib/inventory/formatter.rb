@@ -7,7 +7,7 @@ require 'inventory/utils'
 
 module Inventory
   class Formatter
-    attr_reader :options, :columns_spec
+    attr_reader :options, :columns_spec, :shortcuts
     attr_accessor :columns, :nodes, :mono, :wide, :count, :sort_by
 
     include Inventory::Utils::SnakeToCamel
@@ -21,6 +21,7 @@ module Inventory
       @count = false
       @sort_by = config.sort_by
       @columns_spec = config.columns_spec
+      @shortcuts = config.shortcuts
     end
 
     def to_s

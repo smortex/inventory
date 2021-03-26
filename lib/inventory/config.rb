@@ -4,11 +4,12 @@ require 'yaml'
 
 module Inventory
   class Config
-    attr_accessor :columns, :sort_by, :columns_spec
+    attr_accessor :columns, :sort_by, :columns_spec, :shortcuts
 
     def initialize
       @columns = %w[host customer role]
       @sort_by = %w[customer host]
+      @shortcuts = Hash.new { {} }
       @columns_spec = Hash.new { {} }.merge(default_columns_spec)
 
       load_system_config
@@ -39,6 +40,7 @@ module Inventory
       @columns = config.delete('columns') if config.key?('columns')
       @sort_by = config.delete('sort_by') if config.key?('sort_by')
 
+      @shortcuts.merge!(config.delete('shortcuts')) if config.key?('shortcuts')
       @columns_spec.merge!(config.delete('columns_spec')) if config.key?('columns_spec')
     end
 
