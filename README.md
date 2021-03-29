@@ -8,7 +8,7 @@ Please expect quite a lot of changes with this code.
 
 ## Development
 
-In order to use the Puppet envrionment, use the version of bundler bundled with Puppet:
+In order to use the Puppet environment, use the version of bundler bundled with Puppet:
 
 ```
 /opt/puppetlabs/puppet/bin/bundle install
