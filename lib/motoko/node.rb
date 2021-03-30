@@ -2,13 +2,11 @@
 
 module Motoko
   class Node
-    attr_reader :identity, :classes, :agents
+    attr_reader :identity
 
-    def initialize(resp)
-      @identity = resp[:sender]
-      @facts    = resp[:data][:facts]
-      @classes  = resp[:data][:classes]
-      @agents   = resp[:data][:agents]
+    def initialize(identity, facts)
+      @identity = identity
+      @facts    = facts
     end
 
     def fact(name)
@@ -25,6 +23,12 @@ module Motoko
         end
       end
       result
+    end
+
+    class Choria < Motoko::Node
+      def initialize(node)
+        super(node[:sender], node[:data][:facts])
+      end
     end
   end
 end

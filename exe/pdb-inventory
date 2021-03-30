@@ -94,12 +94,7 @@ resources.each do |fact|
 end
 
 nodes.each do |sender, facts|
-  oparser.formatter.nodes << Motoko::Node.new({
-                                                sender: sender,
-                                                data: {
-                                                  facts: facts,
-                                                },
-                                              })
+  oparser.formatter.nodes << Motoko::Node.new(sender, facts)
 end
 
 puts oparser.formatter.to_s

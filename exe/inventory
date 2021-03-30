@@ -38,7 +38,7 @@ end
 end
 
 util.inventory do |_, resp|
-  formatter.nodes << Motoko::Node.new(resp)
+  formatter.nodes << Motoko::Node::Choria.new(resp)
 end
 
 puts formatter.to_s
