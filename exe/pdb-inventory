@@ -25,7 +25,11 @@ def fact_filter(fact)
   end
 
   begin
-    value = Integer(value)
+    value = case value
+            when 'true' then true
+            when 'false' then false
+            else Integer(value)
+            end
   rescue
     value = "'#{value}'"
   end
