@@ -21,6 +21,17 @@ def fact_filter(fact)
   "certname in facts[certname] { name = '#{name}' and value #{operator} '#{value}' }"
 end
 
+def identity_filter(identity)
+  operator = '='
+
+  if identity =~ %r{\A/.*/\z}
+    identity = identity[1..-2]
+    operator = '~'
+  end
+
+  "certname #{operator} '#{identity}'"
+end
+
 filters = []
 
 oparser = Motoko::OptionParser.new
@@ -37,6 +48,10 @@ oparser.parse do |parser|
 
   parser.on('-F', '--wf', '--with-fact fact=val', 'Match hosts with a certain fact') do |with_fact|
     filters << fact_filter(with_fact)
+  end
+
+  parser.on('-I', '--wi', '--with-identity IDENT', 'Match hosts with a certain configured identity') do |with_ident|
+    filters << identity_filter(with_ident)
   end
 
   Motoko::OptionParser.add_shortcut_options(parser, oparser.formatter, options)
