@@ -17,7 +17,7 @@ def class_filter(klass)
 end
 
 def fact_filter(fact)
-  name, operator, value = fact.split(/([!<>]?=|[<>])/)
+  name, operator, value = fact.split(/([!<>]?=|[<>])/, 2)
 
   if operator == '=' && value =~ %r{\A/.*/\z}
     value = value[1..-2]
