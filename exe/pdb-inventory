@@ -17,15 +17,20 @@ def class_filter(klass)
 end
 
 def fact_filter(fact)
-  name, value = fact.split('=')
-  operator = '='
+  name, operator, value = fact.split(/([!<>]?=|[<>])/)
 
-  if value =~ %r{\A/.*/\z}
+  if operator == '=' && value =~ %r{\A/.*/\z}
     value = value[1..-2]
     operator = '~'
   end
 
-  "certname in facts[certname] { name = '#{name}' and value #{operator} '#{value}' }"
+  begin
+    value = Integer(value)
+  rescue
+    value = "'#{value}'"
+  end
+
+  "certname in inventory[certname] { facts.#{name} #{operator} #{value} }"
 end
 
 def identity_filter(identity)
