@@ -6,7 +6,14 @@ require 'optparse'
 require 'puppetdb'
 
 def class_filter(klass)
-  "certname in resources[certname] { type = 'Class' and title = '#{klass.split('::').map(&:capitalize).join('::')}' }"
+  operator = '='
+
+  if klass =~ %r{\A/.*/\z}
+    klass = klass[1..-2]
+    operator = '~'
+  end
+
+  "certname in resources[certname] { type = 'Class' and title #{operator} '#{klass.split('::').map(&:capitalize).join('::')}' }"
 end
 
 def fact_filter(fact)
