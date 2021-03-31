@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
+require 'motoko/columns/base_column'
+require 'motoko/columns/cpu'
+require 'motoko/columns/fact'
+require 'motoko/columns/identity'
+require 'motoko/columns/os'
+require 'motoko/columns/reboot_required'
 require 'motoko/formatter'
-require 'motoko/formatter/column/base'
-require 'motoko/formatter/column/cpu'
-require 'motoko/formatter/column/fact'
-require 'motoko/formatter/column/identity'
-require 'motoko/formatter/column/os'
-require 'motoko/formatter/column/reboot_required'
 require 'motoko/formatter/column/formatters/base'
 require 'motoko/formatter/column/formatters/boolean'
 require 'motoko/formatter/column/formatters/datetime'
