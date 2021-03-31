@@ -3,8 +3,6 @@
 require 'spec_helper'
 
 RSpec.describe Motoko::Formatter::Column::Formatters::Datetime do
-  subject(:formatter) { described_class.new }
-
   before do
     ENV['TZ'] = 'Pacific/Tahiti'
   end
@@ -14,8 +12,16 @@ RSpec.describe Motoko::Formatter::Column::Formatters::Datetime do
   end
 
   describe '#format' do
-    it 'returns the time in the local zone' do
-      expect(formatter.format('2021-03-12 18:23:13 +0100')).to eq('2021-03-12 07:23:13 -1000')
+    subject(:formatter) { described_class.new.format(value) }
+
+    {
+      '2021-03-12 18:23:13 +0100' => '2021-03-12 07:23:13 -1000',
+    }.each do |k, v|
+      context "with #{k.inspect}" do
+        let(:value) { k }
+
+        it { is_expected.to eq(v) }
+      end
     end
   end
 end

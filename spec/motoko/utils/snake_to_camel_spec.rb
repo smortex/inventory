@@ -17,7 +17,7 @@ RSpec.describe Motoko::Utils::SnakeToCamel do
     {
       'foo'         => 'Foo',
       'foo_bar'     => 'FooBar',
-      'foo_bar_baz' => 'FooBarBaz'
+      'foo_bar_baz' => 'FooBarBaz',
     }.each do |k, v|
       context "with input '#{k}'" do
         let(:input) { k }

@@ -5,8 +5,6 @@ require 'spec_helper'
 require 'timecop'
 
 RSpec.describe Motoko::Formatter::Column::Formatters::DatetimeAgo do
-  subject(:formatter) { described_class.new }
-
   before do
     Timecop.freeze(Time.utc(2021, 5, 1, 0, 0, 0))
   end
@@ -16,24 +14,20 @@ RSpec.describe Motoko::Formatter::Column::Formatters::DatetimeAgo do
   end
 
   describe '#format' do
-    it 'counts seconds correctly' do
-      expect(formatter.format('2021-04-30 23:59:59')).to eq(' 1s')
-    end
+    subject(:formatter) { described_class.new.format(value) }
 
-    it 'counts minutes correctly' do
-      expect(formatter.format('2021-04-30 23:59:00')).to eq(' 1m  0s')
-    end
+    {
+      '2021-04-30 23:59:59' => ' 1s',
+      '2021-04-30 23:59:00' => ' 1m  0s',
+      '2021-04-30 23:00:00' => ' 1h  0m  0s',
+      '2021-04-30 00:00:00' => '1d  0h  0m  0s',
+      '2021-03-19 22:20:30' => '42d  1h 39m 30s',
+    }.each do |k, v|
+      context "with #{k.inspect}" do
+        let(:value) { k }
 
-    it 'counts hours correctly' do
-      expect(formatter.format('2021-04-30 23:00:00')).to eq(' 1h  0m  0s')
-    end
-
-    it 'counts days correctly' do
-      expect(formatter.format('2021-04-30 00:00:00')).to eq('1d  0h  0m  0s')
-    end
-
-    it 'behaves correctly' do
-      expect(formatter.format('2021-03-19 22:20:30')).to eq('42d  1h 39m 30s')
+        it { is_expected.to eq(v) }
+      end
     end
   end
 end

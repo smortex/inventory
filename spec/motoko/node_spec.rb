@@ -24,39 +24,25 @@ RSpec.describe Motoko::Node do
       node.fact(fact)
     end
 
-    context 'with an existing fact' do
-      let(:fact) { 'osfamily' }
+    {
+      'osfamily'                                    => 'FreeBSD',
+      'os.family'                                   => 'FreeBSD',
+      'netwoking.interfaces.lo0.bindings.0.address' => '127.0.0.1',
+    }.each do |k, v|
+      context "with existing fact '#{k}'" do
+        let(:fact) { k }
 
-      it { is_expected.to eq('FreeBSD') }
-    end
-
-    context 'with an existing dotted notation fact' do
-      let(:fact) { 'os.family' }
-
-      it { is_expected.to eq('FreeBSD') }
-    end
-
-    context 'with a non-existing fact' do
-      let(:fact) { 'foo' }
-
-      it { is_expected.to be_nil }
-    end
-
-    context 'with a non-existing dotted notation fact' do
-      let(:fact) { 'foo.bar.baz' }
-
-      it { is_expected.to be_nil }
-    end
-
-    context 'when traversing an array' do
-      context 'with an existing dotted notation fact' do
-        let(:fact) { 'netwoking.interfaces.lo0.bindings.0.address' }
-
-        it { is_expected.to eq('127.0.0.1') }
+        it { is_expected.to eq(v) }
       end
+    end
 
-      context 'with a non-existing dotted notation fact' do
-        let(:fact) { 'netwoking.interfaces.lo0.bindings.1.address' }
+    [
+      'foo',
+      'foo.bar.baz',
+      'netwoking.interfaces.lo0.bindings.1.address',
+    ].each do |k|
+      context "with non existing fact '#{k}'" do
+        let(:fact) { k }
 
         it { is_expected.to be_nil }
       end

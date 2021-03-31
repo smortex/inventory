@@ -3,24 +3,39 @@
 require 'spec_helper'
 
 RSpec.describe Motoko::Formatter::Column::Formatters::Ellipsis do
-  subject(:formatter) { described_class.new }
-
   describe '#format' do
-    it 'ellipsis a long string' do
-      expect(formatter.format('I am a very long string, more than 20 chars!')).to eq('I am a very long st…')
+    subject { formatter.format(value) }
+
+    let(:formatter) { described_class.new }
+
+    {
+      'I am a very long string, more than 20 chars!' => 'I am a very long st…',
+      'foo'                                          => 'foo',
+      nil                                            => nil,
+    }.each do |k, v|
+      context "with #{k.inspect}" do
+        let(:value) { k }
+
+        it { is_expected.to eq(v) }
+      end
     end
 
-    it 'preserve a short string' do
-      expect(formatter.format('foo')).to eq('foo')
-    end
+    context 'with max_length = 5' do
+      before do
+        formatter.max_length = 5
+      end
 
-    it 'preserve a string with max_length length' do
-      formatter.max_length = 5
-      expect(formatter.format('12345')).to eq('12345')
-    end
+      {
+        'I am a very long string, more than 20 chars!' => 'I am…',
+        '12345'                                        => '12345',
+        '123456'                                       => '1234…',
+      }.each do |k, v|
+        context "with #{k.inspect}" do
+          let(:value) { k }
 
-    it 'returns nil when given nil' do
-      expect(formatter.format(nil)).to be_nil
+          it { is_expected.to eq(v) }
+        end
+      end
     end
   end
 end
