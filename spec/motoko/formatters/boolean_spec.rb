@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-RSpec.describe Motoko::Formatter::Column::Formatters::Boolean do
+RSpec.describe Motoko::Formatters::Boolean do
   describe '#format' do
     subject { described_class.new.format(value) }
 

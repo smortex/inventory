@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-RSpec.describe Motoko::Formatter::Column::Formatters::Ellipsis do
+RSpec.describe Motoko::Formatters::Ellipsis do
   describe '#format' do
     subject { formatter.format(value) }
 

@@ -2,26 +2,20 @@
 
 require 'spec_helper'
 
-require 'timecop'
-
-RSpec.describe Motoko::Formatter::Column::Formatters::TimestampAgo do
+RSpec.describe Motoko::Formatters::Datetime do
   before do
-    Timecop.freeze(Time.at(1616349857))
+    ENV['TZ'] = 'Pacific/Tahiti'
   end
 
   after do
-    Timecop.return
+    ENV.delete('TZ')
   end
 
   describe '#format' do
     subject(:formatter) { described_class.new.format(value) }
 
     {
-      '1616349856' => ' 1s',
-      '1616349797' => ' 1m  0s',
-      '1616346257' => ' 1h  0m  0s',
-      '1616263457' => '1d  0h  0m  0s',
-      '1612715087' => '42d  1h 39m 30s',
+      '2021-03-12 18:23:13 +0100' => '2021-03-12 07:23:13 -1000',
     }.each do |k, v|
       context "with #{k.inspect}" do
         let(:value) { k }

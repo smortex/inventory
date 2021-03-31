@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-RSpec.describe Motoko::Formatter::Column::Formatters::Timestamp do
+RSpec.describe Motoko::Formatters::Timestamp do
   before do
     ENV['TZ'] = 'Pacific/Tahiti'
   end

@@ -4,7 +4,7 @@ require 'spec_helper'
 
 require 'timecop'
 
-RSpec.describe Motoko::Formatter::Column::Formatters::DatetimeAgo do
+RSpec.describe Motoko::Formatters::DatetimeAgo do
   before do
     Timecop.freeze(Time.utc(2021, 5, 1, 0, 0, 0))
   end
