@@ -45,27 +45,23 @@ module Motoko
     end
 
     def default_columns_spec
-      {
-        'host' => {
-          'resolver' => 'identity',
-        },
-        'customer' => {
-          'formatter' => 'ellipsis',
-          'max_length' => 20,
-        },
-        'cpu' => {
-          'resolver' => 'cpu',
-        },
-        'os' => {
-          'resolver' => 'os',
-          'human_name' => 'Operating System',
-        },
-        'reboot_required' => {
-          'resolver' => 'reboot_required',
-          'formatter' => 'boolean',
-          'human_name' => 'R',
-        },
-      }
+      YAML.safe_load(<<~COLUMNS_SPEC)
+        ---
+        host:
+          resolver: identity
+        customer:
+          formatter: ellipsis
+          max_length: 20
+        cpu:
+          resolver: cpu
+        os:
+          resolver: os
+          human_name: Operating System
+        reboot_required:
+          resolver: reboot_required
+          formatter: boolean
+          human_name: R
+      COLUMNS_SPEC
     end
   end
 end

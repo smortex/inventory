@@ -4,24 +4,19 @@ require 'spec_helper'
 
 RSpec.describe Motoko::Node do
   subject(:node) do
-    described_class.new('example.com',
-                        {
-                          'netwoking' => {
-                            'interfaces' => {
-                              'lo0' => {
-                                'bindings' => [
-                                  'address' => '127.0.0.1',
-                                  'netmask' => '255.0.0.0',
-                                  'network' => '127.0.0.0'
-                                ]
-                              }
-                            },
-                          },
-                          'osfamily' => 'FreeBSD',
-                          'os' => {
-                            'family' => 'FreeBSD',
-                          }
-                        })
+    described_class.new('example.com', YAML.safe_load(<<~YAML))
+      ---
+      netwoking:
+        interfaces:
+          lo0:
+            bindings:
+              - address: "127.0.0.1"
+                netmask: "255.0.0.0"
+                network: "127.0.0.0"
+      osfamily: "FreeBSD"
+      os:
+        family: "FreeBSD"
+    YAML
   end
 
   describe '#fact' do
