@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Motoko
   module Utils
     module TimeAgo
@@ -12,7 +14,7 @@ module Motoko
           'm' => 60,
           'h' => 24,
         }.each do |unit, count|
-          res << sprintf('%2d%s', value % count, unit)
+          res << Kernel.format('%2d%s', value % count, unit)
           value /= count
 
           break if value.zero?

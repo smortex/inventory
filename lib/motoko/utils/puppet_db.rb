@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Motoko
   module Utils
     module PuppetDB
@@ -26,7 +28,7 @@ module Motoko
                   when 'false' then false
                   else Integer(value)
                   end
-        rescue
+        rescue ArgumentError
           value = "'#{value}'"
         end
 

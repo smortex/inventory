@@ -19,7 +19,7 @@ module Motoko
     def load_system_config
       [
         '/usr/local/etc/motoko/config.yaml',
-        '/etc/motoko/config.yaml'
+        '/etc/motoko/config.yaml',
       ].each do |f|
         if File.readable?(f)
           load_config(f)
