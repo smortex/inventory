@@ -8,7 +8,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ['Romain Tartière']
   spec.email         = ['romain@blogreen.org']
 
-  spec.summary       = 'choria-based node inventory'
+  spec.summary       = 'Inventory tools for Puppet / Choria infrastructures'
   spec.homepage      = 'https://github.com/smortex/motoko'
   spec.license       = 'MIT'
   spec.required_ruby_version = Gem::Requirement.new('>= 2.7.0')
