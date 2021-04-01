@@ -17,6 +17,8 @@ RSpec.describe Motoko::Formatters::DatetimeAgo do
     subject(:formatter) { described_class.new.format(value) }
 
     {
+      nil                   => nil,
+      'foo'                 => nil,
       '2021-04-30 23:59:59' => ' 1s',
       '2021-04-30 23:59:00' => ' 1m  0s',
       '2021-04-30 23:00:00' => ' 1h  0m  0s',

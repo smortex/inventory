@@ -4,7 +4,16 @@ module Motoko
   module Columns
     class RebootRequired < BaseColumn
       def resolve_for(node)
-        node.fact('apt_reboot_required') || node.fact('yum_reboot_required') || node.fact('pkg_reboot_required')
+        [
+          'apt_reboot_required',
+          'pkg_reboot_required',
+          'yum_reboot_required',
+        ].each do |fact|
+          value = node.fact(fact)
+          return value unless value.nil?
+        end
+
+        nil
       end
     end
   end

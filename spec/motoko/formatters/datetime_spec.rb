@@ -15,6 +15,8 @@ RSpec.describe Motoko::Formatters::Datetime do
     subject(:formatter) { described_class.new.format(value) }
 
     {
+      nil                         => nil,
+      'foo'                       => nil,
       '2021-03-12 18:23:13 +0100' => '2021-03-12 07:23:13 -1000',
     }.each do |k, v|
       context "with #{k.inspect}" do

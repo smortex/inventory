@@ -3,20 +3,15 @@
 require 'spec_helper'
 
 RSpec.describe Motoko::Columns::Fact do
-  subject(:column) { described_class.new(column_name, column_spec) }
+  subject(:column) { described_class.new('key', {}) }
 
-  let(:column_name) { 'foo' }
-  let(:column_spec) { {} }
-
-  describe '#align' do
-    let(:subject) { column.align }
-
-    it { is_expected.to be_nil }
+  let(:node) do
+    node = Motoko::Node.new('example.com', { 'key' => 'value' })
   end
 
-  describe '#human_name' do
-    let(:subject) { column.human_name }
+  describe '#resolve_for' do
+    subject { column.resolve_for(node) }
 
-    it { is_expected.to eq('Foo') }
+    it { is_expected.to eq('value') }
   end
 end

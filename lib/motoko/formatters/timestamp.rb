@@ -7,7 +7,7 @@ module Motoko
     class Timestamp < BaseFormatter
       def format(value)
         Time.at(Integer(value)).getlocal.to_s
-      rescue ArgumentError
+      rescue ArgumentError, TypeError
         nil
       end
     end

@@ -7,7 +7,7 @@ module Motoko
     class Datetime < BaseFormatter
       def format(value)
         DateTime.parse(value).to_time.getlocal.to_s
-      rescue ArgumentError
+      rescue ArgumentError, TypeError
         nil
       end
     end
