@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'motoko/utils'
+require 'motoko/utils/snake_to_camel'
 
 module Motoko
   module Resolvers

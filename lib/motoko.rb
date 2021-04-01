@@ -17,6 +17,9 @@ require 'motoko/resolvers/fact'
 require 'motoko/resolvers/identity'
 require 'motoko/resolvers/os'
 require 'motoko/resolvers/reboot_required'
+require 'motoko/utils/puppet_db'
+require 'motoko/utils/snake_to_camel'
+require 'motoko/utils/time_ago'
 require 'motoko/version'
 
 module Motoko

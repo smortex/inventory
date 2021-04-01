@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'motoko/utils'
+require 'motoko/utils/time_ago'
 
 require 'date'
 

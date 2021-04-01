@@ -3,7 +3,7 @@
 require 'skittlize'
 require 'terminal-table'
 
-require 'motoko/utils'
+require 'motoko/utils/snake_to_camel'
 
 module Motoko
   class Formatter
