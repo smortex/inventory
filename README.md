@@ -64,12 +64,54 @@ The usual filtering knobs are available for the choria inventory script.  The pu
 
 #### Which nodes have burned in Strasbourg
 
+The initial work on querying PuppetDB is due to the fact that you can't ask Choria for information about nodes which are gone.  On March 9th 2021, [OVH lost (part of) it's Strasboug datacenter](https://twitter.com/olesovhcom/status/1369478732247932929?ref_src=twsrc%5Etfw) and the frustration of not being able to conviniently build a list of affected nodes and customers was a pain. with motoko we can now just query PuppetDB:
+
 ```sh-session
 romain@zappy ~ % pdb-inventory -F datacenter=/sbg/
 ```
 ## Configuration
 
 At startup, the tools will system-wide configuration from `/etc/motoko/config.yaml`, and then user configuration from `~/.config/motoko/config.yaml`.
+
+### Columns
+
+Set the list of columns to display by default:
+
+```yaml
+columns:
+  - "host"
+  - "customer"
+  - "role"
+  - "country"
+  - "city"
+```
+
+### Column Specifications
+
+Customize how columns are displayed:
+
+* `human_name`: what title should be used for the column (defaults to a capitalized version of the column name);
+* `resolver`: which [resolver](#resolvers) to use to gather the information (defaults to `fact`);
+* `formatter`: which [formatter](#formatters) to use to print the value (none by default);
+* `align`: how to align the formatted value in the column (default to `left`).
+
+```yaml
+columns_spec:
+  host:
+    resolver: "identity"
+  customer:
+    formatter: "ellipsis"
+    max_length: 20
+  cpu:
+    resolver: "cpu"
+  os:
+    human_name: "Operating System"
+    resolver: "os"
+  reboot_required:
+    human_name: "R"
+    resolver: "reboot_required"
+    formatter: "boolean"
+```
 
 ### Shortcuts
 
@@ -86,6 +128,27 @@ shortcuts:
 ```
 
 This add a new command switch `--dc` equivalent to `--add-columns datacenter,server_rack,server_id --with-fact virtual=physical`.
+
+## Resolvers
+
+| Resolver name     | Desciption |
+|-------------------|------------|
+| `cpu`             | Aggregate information about the CPU |
+| `fact`            | Gather the value of the fact `fact` (default to the column name if unset) |
+| `identity`        | Gather the node identity |
+| `os`              | Aggregate information about the OS |
+| `reboot_required` | Combine value of various facts to determine if a reboot is required |
+
+## Formatters
+
+| Formatter name  | Desciption |
+|-----------------|------------|
+| `boolean`       | Display a checkmark for things that evaluate to `true` |
+| `datetime`      | Display a date and time in the local time zone |
+| `datetime_ago`  | Display a date and time as a duration |
+| `ellipsis`      | Display a value truncated at `max_length` chars (default: 20) |
+| `timestamp`     | Display a timestamp (number of seconds since the Unix epoch) in the local time zone |
+| `timestamp_ago` | Display a timestamp (number of seconds since the Unix epoch) as a duration |
 
 ## Contributing
 
