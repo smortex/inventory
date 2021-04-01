@@ -35,6 +35,8 @@ RSpec.describe Motoko::Utils::PuppetDB do
       'foo<=42'     => 'certname in inventory[certname] { facts.foo <= 42 }',
       'foo>42'      => 'certname in inventory[certname] { facts.foo > 42 }',
       'foo>=42'     => 'certname in inventory[certname] { facts.foo >= 42 }',
+      'foo=true'    => 'certname in inventory[certname] { facts.foo = true }',
+      'foo=false'   => 'certname in inventory[certname] { facts.foo = false }',
     }.each do |k, v|
       context "with fact '#{k}'" do
         let(:fact) { k }
