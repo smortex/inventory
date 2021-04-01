@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-RSpec.describe Motoko::Columns::Identity do
+RSpec.describe Motoko::Resolvers::Identity do
   subject(:column) { described_class.new('host', {}) }
 
   let(:node) do

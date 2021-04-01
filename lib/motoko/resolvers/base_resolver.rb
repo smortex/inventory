@@ -3,8 +3,8 @@
 require 'motoko/utils'
 
 module Motoko
-  module Columns
-    class BaseColumn
+  module Resolvers
+    class BaseResolver
       attr_accessor :name
       attr_writer :human_name
       attr_reader :formatter

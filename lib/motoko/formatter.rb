@@ -32,7 +32,7 @@ module Motoko
       actual_columns = columns.map do |column|
         klass = columns_spec[column].delete('resolver') || 'Fact'
 
-        Object.const_get("Motoko::Columns::#{snake_to_camel_case(klass)}").new(column, columns_spec[column])
+        Object.const_get("Motoko::Resolvers::#{snake_to_camel_case(klass)}").new(column, columns_spec[column])
       end
 
       nodes.sort_by! { |a| sort_by.map { |c| a.fact(c) || '' } + [a.identity] }

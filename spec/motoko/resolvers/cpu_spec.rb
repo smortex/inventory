@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-RSpec.describe Motoko::Columns::Cpu do
+RSpec.describe Motoko::Resolvers::Cpu do
   subject(:column) { described_class.new('cpu', {}) }
 
   let(:node) do

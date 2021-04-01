@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-RSpec.describe Motoko::Columns::RebootRequired do
+RSpec.describe Motoko::Resolvers::RebootRequired do
   subject(:column) { described_class.new('key', {}) }
 
   let(:node) do

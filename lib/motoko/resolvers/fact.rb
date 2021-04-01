@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 module Motoko
-  module Columns
-    class Fact < BaseColumn
+  module Resolvers
+    class Fact < BaseResolver
       attr_accessor :fact
 
       def initialize(name, options)

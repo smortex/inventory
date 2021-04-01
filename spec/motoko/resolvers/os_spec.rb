@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-RSpec.describe Motoko::Columns::Os do
+RSpec.describe Motoko::Resolvers::Os do
   subject(:column) { described_class.new('os', {}) }
 
   let(:node) do

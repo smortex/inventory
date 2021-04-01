@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-RSpec.describe Motoko::Columns::BaseColumn do
+RSpec.describe Motoko::Resolvers::BaseResolver do
   subject(:column) { described_class.new(column_name, column_spec) }
 
   let(:column_name) { 'foo' }

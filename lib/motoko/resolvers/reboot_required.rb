@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 module Motoko
-  module Columns
-    class RebootRequired < BaseColumn
+  module Resolvers
+    class RebootRequired < BaseResolver
       def resolve_for(node)
         [
           'apt_reboot_required',
