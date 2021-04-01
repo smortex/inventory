@@ -32,8 +32,8 @@ module Motoko
         @human_name ||= name.tr('_', ' ').gsub('.', ' > ').split.map(&:capitalize).join(' ')
       end
 
-      def resolve_for(node)
-        node.fact(name)
+      def resolve_for(_node)
+        raise 'Not implemented'
       end
 
       def value(node)
