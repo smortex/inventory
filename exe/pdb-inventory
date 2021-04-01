@@ -1,9 +1,9 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
+require 'mcollective'
 require 'motoko'
 require 'optparse'
-require 'puppetdb'
 
 filters = []
 
@@ -38,15 +38,16 @@ end
   filters << fact_filter(fact)
 end
 
-client = PuppetDB::Client.new
+config = MCollective::Config.instance
+config.loadconfig(MCollective::Util.config_file_for_user)
 
-response = client.request('', "facts[certname, name, value] { #{filters.map { |f| "(#{f})" }.join(' and ')} }")
+client = MCollective::Util::Choria.new
 
-resources = response.data
+response = client.pql_query("facts[certname, name, value] { #{filters.map { |f| "(#{f})" }.join(' and ')} }")
 
 nodes = Hash.new { |hash, value| hash[value] = {} }
 
-resources.each do |fact|
+response.each do |fact|
   nodes[fact['certname']][fact['name']] = fact['value']
 end
 

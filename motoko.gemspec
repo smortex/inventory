@@ -29,7 +29,6 @@ Gem::Specification.new do |spec|
   spec.require_paths = ['lib']
 
   spec.add_dependency 'choria-mcorpc-support'
-  spec.add_dependency 'pl-puppetdb-ruby'
   spec.add_dependency 'skittlize'
   spec.add_dependency 'terminal-table'
 end
