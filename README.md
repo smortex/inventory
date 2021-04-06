@@ -71,7 +71,7 @@ romain@zappy ~ % pdb-inventory -F datacenter=/sbg/
 ```
 ## Configuration
 
-At startup, the tools will system-wide configuration from `/etc/motoko/config.yaml`, and then user configuration from `~/.config/motoko/config.yaml`.
+At startup, Motoko will load system-wide configuration from `/etc/motoko/config.yaml`, and then user configuration from `~/.config/motoko/config.yaml`.
 
 ### Columns
 
@@ -139,6 +139,10 @@ This add a new command switch `--dc` equivalent to `--add-columns datacenter,ser
 | `os`              | Aggregate information about the OS |
 | `reboot_required` | Combine value of various facts to determine if a reboot is required |
 
+### Extending Motoko with custom resolvers
+
+Custom resolvers can be droped in the `<motoko-config-directory>/resolvers/` directory.  They are automatically loaded on startup.
+
 ## Formatters
 
 | Formatter name  | Desciption |
@@ -149,6 +153,10 @@ This add a new command switch `--dc` equivalent to `--add-columns datacenter,ser
 | `ellipsis`      | Display a value truncated at `max_length` chars (default: 20) |
 | `timestamp`     | Display a timestamp (number of seconds since the Unix epoch) in the local time zone |
 | `timestamp_ago` | Display a timestamp (number of seconds since the Unix epoch) as a duration |
+
+### Extending Motoko with custom formatters
+
+Custom formatters can be droped in the `<motoko-config-directory>/formatters/` directory.  They are automatically loaded on startup.
 
 ## Contributing
 

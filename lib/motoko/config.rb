@@ -18,23 +18,28 @@ module Motoko
 
     def load_system_config
       [
-        '/usr/local/etc/motoko/config.yaml',
-        '/etc/motoko/config.yaml',
-      ].each do |f|
-        if File.readable?(f)
-          load_config(f)
+        '/usr/local/etc/motoko',
+        '/etc/motoko',
+      ].each do |d|
+        if File.directory?(d)
+          load_config(d)
           break
         end
       end
     end
 
     def load_user_config
-      f = File.expand_path('~/.config/motoko/config.yaml')
-
-      load_config(f) if File.readable?(f)
+      d = File.expand_path('~/.config/motoko')
+      load_config(d) if File.directory?(d)
     end
 
-    def load_config(filename)
+    def load_config(directory)
+      load_classes(directory)
+
+      filename = File.join(directory, 'config.yaml')
+
+      return unless File.readable?(filename)
+
       config = YAML.safe_load(File.read(filename))
 
       @columns = config.delete('columns') if config.key?('columns')
@@ -42,6 +47,12 @@ module Motoko
 
       @shortcuts.merge!(config.delete('shortcuts')) if config.key?('shortcuts')
       @columns_spec.merge!(config.delete('columns_spec')) if config.key?('columns_spec')
+    end
+
+    def load_classes(directory)
+      Dir["#{directory}/formatters/*.rb", "#{directory}/resolvers/*.rb"].each do |file|
+        require file
+      end
     end
 
     def default_columns_spec
