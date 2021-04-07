@@ -6,7 +6,7 @@ RSpec.describe Motoko::Resolvers::Fact do
   subject(:column) { described_class.new('key', {}) }
 
   let(:node) do
-    node = Motoko::Node.new('example.com', { 'key' => 'value' })
+    Motoko::Node.new('example.com', { 'key' => 'value' })
   end
 
   describe '#resolve_for' do

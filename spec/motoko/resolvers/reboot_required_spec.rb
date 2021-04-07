@@ -6,7 +6,7 @@ RSpec.describe Motoko::Resolvers::RebootRequired do
   subject(:column) { described_class.new('key', {}) }
 
   let(:node) do
-    node = Motoko::Node.new('example.com', facts)
+    Motoko::Node.new('example.com', facts)
   end
 
   describe '#resolve_for' do

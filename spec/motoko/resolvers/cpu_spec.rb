@@ -6,7 +6,7 @@ RSpec.describe Motoko::Resolvers::Cpu do
   subject(:column) { described_class.new('cpu', {}) }
 
   let(:node) do
-    node = Motoko::Node.new('example.com', { 'processors' => processors })
+    Motoko::Node.new('example.com', { 'processors' => processors })
   end
 
   let(:processors) do

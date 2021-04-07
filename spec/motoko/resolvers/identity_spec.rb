@@ -6,7 +6,7 @@ RSpec.describe Motoko::Resolvers::Identity do
   subject(:column) { described_class.new('host', {}) }
 
   let(:node) do
-    node = Motoko::Node.new('example.com', {})
+    Motoko::Node.new('example.com', {})
   end
 
   describe '#resolve_for' do

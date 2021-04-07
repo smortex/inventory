@@ -14,7 +14,7 @@ module Motoko
           'm' => 60,
           'h' => 24,
         }.each do |unit, count|
-          res << Kernel.format('%2d%s', value % count, unit)
+          res << Kernel.format('%<n>2d%<unit>s', n: value % count, unit: unit)
           value /= count
 
           break if value.zero?

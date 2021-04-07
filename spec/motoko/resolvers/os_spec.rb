@@ -6,11 +6,10 @@ RSpec.describe Motoko::Resolvers::Os do
   subject(:column) { described_class.new('os', {}) }
 
   let(:node) do
-    node = Motoko::Node.new('example.com', facts)
+    Motoko::Node.new('example.com', facts)
   end
 
-
-  context '#resolve_for' do
+  describe '#resolve_for' do
     subject { column.resolve_for(node) }
 
     context 'with distro description' do

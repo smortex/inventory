@@ -50,7 +50,7 @@ module Motoko
     end
 
     def load_classes(directory)
-      Dir["#{directory}/formatters/*.rb", "#{directory}/resolvers/*.rb"].each do |file|
+      Dir["#{directory}/formatters/*.rb", "#{directory}/resolvers/*.rb"].sort.each do |file|
         require file
       end
     end
