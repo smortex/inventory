@@ -27,38 +27,51 @@ module Motoko
     def to_s
       return '' if nodes.empty?
 
+      @rows = nil
+      @column_resolvers = nil
+
       columns.uniq!
 
-      actual_columns = columns.map do |column|
+      table = ::Terminal::Table.new headings: headings, rows: data
+      column_resolvers.each_with_index do |column, idx|
+        table.align_column(idx, column.align) if column.align
+      end
+      table.to_s
+    end
+
+    def column_resolvers
+      @column_resolvers ||= columns.map do |column|
         klass = columns_spec[column].delete('resolver') || 'Fact'
 
         Object.const_get("Motoko::Resolvers::#{snake_to_camel_case(klass)}").new(column, columns_spec[column])
       end
+    end
 
-      nodes.sort_by! { |a| sort_by.map { |c| a.fact(c) || '' } + [a.identity] }
+    def data
+      return @data if @data
 
-      nodes.map! do |node|
-        actual_columns.map do |column|
-          column.value(node)
-        end
-      end
+      @data = sorted_nodes.map! do |node|
+        column_resolvers.map do |column|
+          value = column.value(node)
 
-      nodes.skittlize! unless mono
-
-      rows = nodes.map do |row|
-        row.map do |col|
-          if col.is_a?(Array)
-            col.join("\n")
+          if value.is_a?(Array)
+            value.join("\n")
           else
-            col
+            value
           end
         end
       end
 
-      header = actual_columns.each_with_index.map do |column, idx|
+      @data.skittlize! unless mono
+
+      @data
+    end
+
+    def headings
+      header = column_resolvers.each_with_index.map do |column, idx|
         name = column.human_name
         if count
-          different_values = rows.map { |line| line[idx] }.uniq.compact.count
+          different_values = data.map { |line| line[idx] }.uniq.compact.count
           name += " (#{different_values})" if different_values > 1
         end
         {
@@ -66,11 +79,10 @@ module Motoko
           alignment: :center,
         }
       end
-      table = ::Terminal::Table.new headings: header, rows: rows
-      actual_columns.each_with_index do |column, idx|
-        table.align_column(idx, column.align) if column.align
-      end
-      table.to_s
+    end
+
+    def sorted_nodes
+      nodes.sort_by { |a| sort_by.map { |c| a.fact(c) || '' } + [a.identity] }
     end
   end
 end
