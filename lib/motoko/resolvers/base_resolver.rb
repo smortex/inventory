@@ -16,10 +16,10 @@ module Motoko
 
         @name = name
         @human_name = options.delete('human_name') if options.key?('human_name')
-        @formatter = options.delete('formatter') if options.key?('formatter')
+        formatter = options.delete('formatter') || 'base_formatter'
         @align = options.delete('align')
 
-        @formatter = Object.const_get("Motoko::Formatters::#{snake_to_camel_case(@formatter)}").new(options) if @formatter
+        @formatter = Object.const_get("Motoko::Formatters::#{snake_to_camel_case(formatter)}").new(options)
 
         puts "unused keys for column #{name}: #{options.keys.join(', ')}" if options.keys.any?
       end
@@ -37,11 +37,7 @@ module Motoko
       end
 
       def value(node)
-        value = resolve_for(node)
-
-        value = formatter.format(value) if formatter
-
-        value
+        formatter.format(resolve_for(node))
       end
     end
   end

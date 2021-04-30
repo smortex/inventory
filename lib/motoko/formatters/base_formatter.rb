@@ -5,8 +5,15 @@ module Motoko
     class BaseFormatter
       def initialize(options = {}) end
 
-      def format(_value)
-        raise 'Not implemented'
+      def format(value)
+        case value
+        when Array
+          value.join("\n")
+        when Hash
+          value.keys.join("\n")
+        else
+          value.to_s
+        end
       end
     end
   end

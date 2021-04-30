@@ -52,13 +52,7 @@ module Motoko
 
       @data = sorted_nodes.map! do |node|
         column_resolvers.map do |column|
-          value = column.value(node)
-
-          if value.is_a?(Array)
-            value.join("\n")
-          else
-            value
-          end
+          column.value(node)
         end
       end
 
