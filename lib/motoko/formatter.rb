@@ -56,7 +56,7 @@ module Motoko
         end
       end
 
-      @data.skittlize! unless mono
+      @data.skittlize!(split: "\n", join: ', ') unless mono
 
       @data
     end
