@@ -31,11 +31,11 @@ oparser.parse do |parser|
 end
 
 (options[:with_class] || []).compact.each do |klass|
-  filters << class_filter(klass)
+  filters << Motoko::Utils::PuppetDB.class_filter(klass)
 end
 
 (options[:with_fact] || []).compact.each do |fact|
-  filters << fact_filter(fact)
+  filters << Motoko::Utils::PuppetDB.fact_filter(fact)
 end
 
 config = MCollective::Config.instance
