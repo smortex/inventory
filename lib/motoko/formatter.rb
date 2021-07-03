@@ -62,7 +62,7 @@ module Motoko
     end
 
     def headings
-      header = column_resolvers.each_with_index.map do |column, idx|
+      column_resolvers.each_with_index.map do |column, idx|
         name = column.human_name
         if count
           different_values = data.map { |line| line[idx] }.uniq.compact.count

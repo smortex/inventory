@@ -19,6 +19,7 @@ module Motoko
       @formatter
     end
 
+    # rubocop:disable Metrics/AbcSize
     def self.add_inventory_options(parser, formatter)
       parser.separator ''
       parser.separator 'Inventory Options'
@@ -74,5 +75,6 @@ module Motoko
         end
       end
     end
+    # rubocop:enable Metrics/AbcSize
   end
 end

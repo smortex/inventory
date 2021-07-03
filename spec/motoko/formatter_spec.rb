@@ -10,7 +10,7 @@ RSpec.describe Motoko::Formatter do
     formater.mono = true
     formater.nodes = [
       Motoko::Node.new('node1', 'value1' => 'foo', 'value2' => 'a'),
-      Motoko::Node.new('node2', 'value1' => 'foo', 'value2' => ['b', 'c']),
+      Motoko::Node.new('node2', 'value1' => 'foo', 'value2' => %w[b c]),
     ]
   end
 
@@ -53,9 +53,8 @@ RSpec.describe Motoko::Formatter do
         n2,
         n3,
       ]
-      formater.sort_by = ['value1', 'host']
+      formater.sort_by = %w[value1 host]
     end
-
 
     it { is_expected.to eq([n3, n1, n2]) }
   end
