@@ -2,27 +2,21 @@
 
 A gem to get inventories of nodes in a Puppet / Choria deployment.
 
-*THIS IS CURRENTLY A WIP AND WILL BURN YOUR NODES*
-
-Please expect quite a lot of changes with this code.
-
-## Development
-
-In order to use the Puppet environment, use the version of bundler bundled with Puppet:
-
-```
-/opt/puppetlabs/puppet/bin/bundle install
-/opt/puppetlabs/puppet/bin/bundle exec rake spec
-/opt/puppetlabs/puppet/bin/bundle exec exe/inventory
-```
-
 ## Installation
 
-Take care to install this tool in the Puppet envrionment.  If you are using the AIO package, you can build and install like this:
+Take care to install this tool in the Puppet envrionment.  If you are using the AIO package, you can install with:
 
 ```
-/opt/puppetlabs/puppet/bin/gem build motoko.gemspec
-sudo /opt/puppetlabs/puppet/bin/gem install --bindir /opt/puppetlabs/bin motoko-x.y.z.gem
+/opt/puppetlabs/puppet/bin/gem install --bindir /opt/puppetlabs/bin puppetdb_cli
+```
+
+Alternatively, you can install using Puppet:
+
+```puppet
+package { 'motoko':
+  ensure   => installed,
+  provider => 'puppet_gem',
+}
 ```
 
 ## Usage
@@ -157,6 +151,23 @@ Custom resolvers can be droped in the `<motoko-config-directory>/resolvers/` dir
 ### Extending Motoko with custom formatters
 
 Custom formatters can be droped in the `<motoko-config-directory>/formatters/` directory.  They are automatically loaded on startup.
+
+## Development
+
+In order to use the Puppet environment, use the version of bundler bundled with Puppet:
+
+```
+/opt/puppetlabs/puppet/bin/bundle install
+/opt/puppetlabs/puppet/bin/bundle exec rake spec
+/opt/puppetlabs/puppet/bin/bundle exec exe/inventory
+```
+
+Iy you want to install this development code:
+
+```
+/opt/puppetlabs/puppet/bin/gem build motoko.gemspec
+sudo /opt/puppetlabs/puppet/bin/gem install --bindir /opt/puppetlabs/bin motoko-x.y.z.gem
+```
 
 ## Contributing
 
