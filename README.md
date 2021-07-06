@@ -14,8 +14,12 @@ Alternatively, you can install using Puppet:
 
 ```puppet
 package { 'motoko':
-  ensure   => installed,
-  provider => 'puppet_gem',
+  ensure          => 'installed',
+  provider        => 'puppet_gem',
+  install_options => [
+    '--bindir',
+    '/opt/puppetlabs/bin',
+  ],
 }
 ```
 
