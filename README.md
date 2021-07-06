@@ -7,7 +7,7 @@ A gem to get inventories of nodes in a Puppet / Choria deployment.
 Take care to install this tool in the Puppet envrionment.  If you are using the AIO package, you can install with:
 
 ```
-/opt/puppetlabs/puppet/bin/gem install --bindir /opt/puppetlabs/bin puppetdb_cli
+/opt/puppetlabs/puppet/bin/gem install --bindir /opt/puppetlabs/bin motoko
 ```
 
 Alternatively, you can install using Puppet:
