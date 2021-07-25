@@ -153,6 +153,15 @@ shortcuts:
 
 This add a new command switch `--dc` equivalent to `--add-columns datacenter,server_rack,server_id --with-fact virtual=physical`.
 
+The following settings are available when defining shortcuts:
+
+| Setting       | Description |
+|---------------|-------------|
+| `description` | Description of the shortcut (visible in `--help`) |
+| `add_columns` | Extra columns to append of the default list |
+| `with_fact`   | Extra filtering of the results based on facts |
+| `with_class`  | Extra filtering of the results based on configured classes |
+
 ## Resolvers
 
 | Resolver name     | Description |
