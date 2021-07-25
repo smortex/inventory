@@ -67,7 +67,11 @@ module Motoko
 
       formatter.shortcuts.each do |key, value|
         parser.on("--#{key}", value.delete('description')) do
-          formatter.columns.push(*value.delete('add_columns'))
+          if value.key?('columns')
+            formatter.columns.replace(value.delete('columns'))
+          else
+            formatter.columns.push(*value.delete('add_columns'))
+          end
           local_options[:with_class] ||= []
           local_options[:with_class].push(*value.delete('with_class'))
           local_options[:with_fact] ||= []
