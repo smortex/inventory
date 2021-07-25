@@ -2,6 +2,32 @@
 
 A gem to get inventories of nodes in a Puppet / Choria deployment.
 
+<!-- vim-markdown-toc GFM -->
+
+* [Installation](#installation)
+* [Usage](#usage)
+  * [Basic usage](#basic-usage)
+    * [Which nodes are currently up and running](#which-nodes-are-currently-up-and-running)
+    * [Which nodes are known to puppet](#which-nodes-are-known-to-puppet)
+  * [Accessing facts](#accessing-facts)
+    * [Add more facts to the output](#add-more-facts-to-the-output)
+  * [Filtering](#filtering)
+    * [Which nodes have burned in Strasbourg](#which-nodes-have-burned-in-strasbourg)
+* [Configuration](#configuration)
+  * [Columns](#columns)
+  * [Column Specifications](#column-specifications)
+  * [Shortcuts](#shortcuts)
+* [Resolvers](#resolvers)
+  * [Extending Motoko with custom resolvers](#extending-motoko-with-custom-resolvers)
+* [Formatters](#formatters)
+  * [Extending Motoko with custom formatters](#extending-motoko-with-custom-formatters)
+* [Development](#development)
+* [Contributing](#contributing)
+* [License](#license)
+* [Code of Conduct](#code-of-conduct)
+
+<!-- vim-markdown-toc -->
+
 ## Installation
 
 Take care to install this tool in the Puppet envrionment.  If you are using the AIO package, you can install with:
