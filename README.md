@@ -158,6 +158,7 @@ The following settings are available when defining shortcuts:
 | Setting       | Description |
 |---------------|-------------|
 | `description` | Description of the shortcut (visible in `--help`) |
+| `columns`     | List of columns to display |
 | `add_columns` | Extra columns to append of the default list |
 | `with_fact`   | Extra filtering of the results based on facts |
 | `with_class`  | Extra filtering of the results based on configured classes |
