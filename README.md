@@ -30,7 +30,7 @@ A gem to get inventories of nodes in a Puppet / Choria deployment.
 
 ## Installation
 
-Take care to install this tool in the Puppet envrionment.  If you are using the AIO package, you can install with:
+Take care to install this tool in the Puppet environment.  If you are using the AIO package, you can install with:
 
 ```
 /opt/puppetlabs/puppet/bin/gem install --bindir /opt/puppetlabs/bin motoko
@@ -88,7 +88,7 @@ The usual filtering knobs are available for the choria inventory script.  The pu
 
 #### Which nodes have burned in Strasbourg
 
-The initial work on querying PuppetDB is due to the fact that you can't ask Choria for information about nodes which are gone.  On March 9th 2021, [OVH lost (part of) it's Strasboug datacenter](https://twitter.com/olesovhcom/status/1369478732247932929?ref_src=twsrc%5Etfw) and the frustration of not being able to conviniently build a list of affected nodes and customers was a pain. with motoko we can now just query PuppetDB:
+The initial work on querying PuppetDB is due to the fact that you can't ask Choria for information about nodes which are gone.  On March 9th 2021, [OVH lost (part of) it's Strasboug datacenter](https://twitter.com/olesovhcom/status/1369478732247932929?ref_src=twsrc%5Etfw) and the frustration of not being able to conveniently build a list of affected nodes and customers was a pain. With Motoko we can now just query PuppetDB:
 
 ```sh-session
 romain@zappy ~ % pdb-inventory -F datacenter=/sbg/
@@ -155,8 +155,8 @@ This add a new command switch `--dc` equivalent to `--add-columns datacenter,ser
 
 ## Resolvers
 
-| Resolver name     | Desciption |
-|-------------------|------------|
+| Resolver name     | Description |
+|-------------------|-------------|
 | `cpu`             | Aggregate information about the CPU |
 | `fact`            | Gather the value of the fact `fact` (default to the column name if unset) |
 | `identity`        | Gather the node identity |
@@ -165,12 +165,12 @@ This add a new command switch `--dc` equivalent to `--add-columns datacenter,ser
 
 ### Extending Motoko with custom resolvers
 
-Custom resolvers can be droped in the `<motoko-config-directory>/resolvers/` directory.  They are automatically loaded on startup.
+Custom resolvers can be dropped in the `<motoko-config-directory>/resolvers/` directory.  They are automatically loaded on startup.
 
 ## Formatters
 
-| Formatter name  | Desciption |
-|-----------------|------------|
+| Formatter name  | Description |
+|-----------------|-------------|
 | `boolean`       | Display a checkmark for things that evaluate to `true` |
 | `datetime`      | Display a date and time in the local time zone |
 | `datetime_ago`  | Display a date and time as a duration |
@@ -180,7 +180,7 @@ Custom resolvers can be droped in the `<motoko-config-directory>/resolvers/` dir
 
 ### Extending Motoko with custom formatters
 
-Custom formatters can be droped in the `<motoko-config-directory>/formatters/` directory.  They are automatically loaded on startup.
+Custom formatters can be dropped in the `<motoko-config-directory>/formatters/` directory.  They are automatically loaded on startup.
 
 ## Development
 
