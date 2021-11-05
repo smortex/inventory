@@ -95,7 +95,7 @@ romain@zappy ~ % pdb-inventory -F datacenter=/sbg/
 ```
 ## Configuration
 
-At startup, Motoko will load system-wide configuration from `/etc/motoko/config.yaml`, and then user configuration from `~/.config/motoko/config.yaml`.
+At startup, Motoko will try to load a system-wide configuration from `/etc/motoko/config.yaml`, a user configuration from `~/.config/motoko/config.yaml` and a project configuration from `.motoko.yaml` in the current working directory.
 
 ### Columns
 
