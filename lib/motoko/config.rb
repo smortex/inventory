@@ -41,7 +41,6 @@ module Motoko
     def load_config(directory)
       load_classes(directory)
       load_only_config(File.join(directory, 'config.yaml'))
-
     end
 
     def load_only_config(filename)
