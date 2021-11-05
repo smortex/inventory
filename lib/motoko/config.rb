@@ -14,6 +14,7 @@ module Motoko
 
       load_system_config
       load_user_config
+      load_project_config
     end
 
     def load_system_config
@@ -33,11 +34,16 @@ module Motoko
       load_config(d) if File.directory?(d)
     end
 
+    def load_project_config
+      load_only_config('.motoko.yaml')
+    end
+
     def load_config(directory)
       load_classes(directory)
+      load_only_config(File.join(directory, 'config.yaml'))
+    end
 
-      filename = File.join(directory, 'config.yaml')
-
+    def load_only_config(filename)
       return unless File.readable?(filename)
 
       config = YAML.safe_load(File.read(filename))

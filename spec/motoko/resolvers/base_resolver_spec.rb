@@ -9,13 +9,13 @@ RSpec.describe Motoko::Resolvers::BaseResolver do
   let(:column_spec) { {} }
 
   describe '#align' do
-    let(:subject) { column.align }
+    subject { column.align }
 
     it { is_expected.to be_nil }
   end
 
   describe '#human_name' do
-    let(:subject) { column.human_name }
+    subject { column.human_name }
 
     it { is_expected.to eq('Foo') }
   end
