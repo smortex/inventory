@@ -14,7 +14,7 @@ GitHubChangelogGenerator::RakeTask.new :changelog do |config|
     and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   HEADER
   config.exclude_labels = %w[duplicate question invalid wontfix wont-fix skip-changelog ignore]
-  config.user = 'smortex'
+  config.user = 'opus-codium'
   config.project = 'motoko'
   config.since_tag = 'v1.0.0'
 end
