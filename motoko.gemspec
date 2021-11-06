@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.email         = ['romain@blogreen.org']
 
   spec.summary       = 'Inventory tools for Puppet / Choria infrastructures'
-  spec.homepage      = 'https://github.com/smortex/motoko'
+  spec.homepage      = 'https://github.com/opus-codium/motoko'
   spec.license       = 'MIT'
   spec.required_ruby_version = Gem::Requirement.new('>= 2.5.0')
 
