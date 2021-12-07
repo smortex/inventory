@@ -5,13 +5,25 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [1.1.0](https://github.com/smortex/motoko/tree/1.1.0) (2021-07-26)
+## [1.2.0](https://github.com/opus-codium/motoko/tree/1.2.0) (2021-12-06)
 
-[Full Changelog](https://github.com/smortex/motoko/compare/v1.0.0...1.1.0)
+[Full Changelog](https://github.com/opus-codium/motoko/compare/v1.1.0...1.2.0)
 
 **Implemented enhancements:**
 
-- Allow shortcuts to replace the list of columns [\#2](https://github.com/smortex/motoko/pull/2) ([smortex](https://github.com/smortex))
+- Add support for project configuration files [\#3](https://github.com/opus-codium/motoko/pull/3) ([smortex](https://github.com/smortex))
+
+**Merged pull requests:**
+
+- Relocate the project [\#4](https://github.com/opus-codium/motoko/pull/4) ([smortex](https://github.com/smortex))
+
+## [v1.1.0](https://github.com/opus-codium/motoko/tree/v1.1.0) (2021-07-26)
+
+[Full Changelog](https://github.com/opus-codium/motoko/compare/v1.0.0...v1.1.0)
+
+**Implemented enhancements:**
+
+- Allow shortcuts to replace the list of columns [\#2](https://github.com/opus-codium/motoko/pull/2) ([smortex](https://github.com/smortex))
 
 
 
