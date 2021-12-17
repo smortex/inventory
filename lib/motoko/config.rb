@@ -35,6 +35,7 @@ module Motoko
     end
 
     def load_project_config
+      load_classes('.motoko')
       load_only_config('.motoko.yaml')
     end
 
@@ -57,7 +58,7 @@ module Motoko
 
     def load_classes(directory)
       Dir["#{directory}/formatters/*.rb", "#{directory}/resolvers/*.rb"].sort.each do |file|
-        require file
+        require File.expand_path(file)
       end
     end
 
