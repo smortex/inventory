@@ -55,4 +55,4 @@ nodes.each do |sender, facts|
   oparser.formatter.nodes << Motoko::Node.new(sender, facts)
 end
 
-puts oparser.formatter.to_s
+puts oparser.formatter

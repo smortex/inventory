@@ -43,9 +43,11 @@ RSpec.describe Motoko::Formatter do
   describe '#sorted_nodes' do
     subject { formater.sorted_nodes }
 
+    # rubocop:disable RSpec/IndexedLet
     let(:n1) { Motoko::Node.new('node1', 'value1' => 'foo', 'value2' => 'a') }
     let(:n2) { Motoko::Node.new('node2', 'value1' => 'foo', 'value2' => 'b') }
     let(:n3) { Motoko::Node.new('node3', 'value1' => 'bar', 'value2' => 'c') }
+    # rubocop:enable RSpec/IndexedLet
 
     before do
       formater.nodes = [
