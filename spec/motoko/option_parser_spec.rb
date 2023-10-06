@@ -12,8 +12,7 @@ RSpec.describe Motoko::OptionParser do
     before do
       allow(parser).to receive(:separator)
       allow(parser).to receive(:on).and_yield
-      allow(formatter).to receive(:shortcuts).and_return(shortcuts)
-      allow(formatter).to receive(:columns).and_return(columns)
+      allow(formatter).to receive_messages(shortcuts: shortcuts, columns: columns)
       described_class.add_shortcut_options(parser, formatter, local_options)
     end
 

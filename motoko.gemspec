@@ -32,7 +32,6 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'skittlize', '~> 1.2'
   spec.add_dependency 'terminal-table'
 
-  spec.add_development_dependency 'github_changelog_generator'
   spec.metadata = {
     'rubygems_mfa_required' => 'true',
   }

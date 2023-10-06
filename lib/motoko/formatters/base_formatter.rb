@@ -3,7 +3,9 @@
 module Motoko
   module Formatters
     class BaseFormatter
-      def initialize(options = {}) end
+      def initialize(options = {})
+        # noop
+      end
 
       def format(value)
         case value
