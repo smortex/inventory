@@ -56,7 +56,7 @@ module Motoko
         formatter.count = count
       end
 
-      parser.on('--sort-by=COLUMNS', 'Sort lines by COLUMS', Array) do |columns|
+      parser.on('--sort-by=COLUMNS', 'Sort lines by COLUMNS', Array) do |columns|
         formatter.sort_by = columns
       end
     end
