@@ -5,9 +5,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [1.2.0](https://github.com/opus-codium/motoko/tree/1.2.0) (2021-12-06)
+## [1.2.1](https://github.com/opus-codium/motoko/tree/1.2.1) (2024-09-19)
 
-[Full Changelog](https://github.com/opus-codium/motoko/compare/v1.1.0...1.2.0)
+[Full Changelog](https://github.com/opus-codium/motoko/compare/v1.2.0...1.2.1)
+
+**Fixed bugs:**
+
+- Various bug fixes [\#8](https://github.com/opus-codium/motoko/pull/8) ([smortex](https://github.com/smortex))
+
+## [v1.2.0](https://github.com/opus-codium/motoko/tree/v1.2.0) (2021-12-07)
+
+[Full Changelog](https://github.com/opus-codium/motoko/compare/v1.1.0...v1.2.0)
 
 **Implemented enhancements:**
 
