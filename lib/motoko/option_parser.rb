@@ -37,7 +37,7 @@ module Motoko
       end
 
       parser.on('--puppet', 'Display Puppet information') do
-        formatter.columns += %w[puppet]
+        formatter.columns += %w[aio_agent_version puppetversion]
       end
 
       parser.on('--sw', 'Display sodtware information') do
