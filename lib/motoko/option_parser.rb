@@ -33,15 +33,15 @@ module Motoko
       end
 
       parser.on('--hw', 'Display hardware information') do
-        formatter.columns += %i[is_virtual cpu memory]
+        formatter.columns += %w[is_virtual cpu memory]
       end
 
       parser.on('--puppet', 'Display Puppet information') do
-        formatter.columns += %i[puppet]
+        formatter.columns += %w[aio_agent_version puppetversion]
       end
 
       parser.on('--sw', 'Display sodtware information') do
-        formatter.columns += %i[os kernel]
+        formatter.columns += %w[os kernel]
       end
 
       parser.on('--mono', 'Do not display a colored output') do
@@ -56,7 +56,7 @@ module Motoko
         formatter.count = count
       end
 
-      parser.on('--sort-by=COLUMNS', 'Sort lines by COLUMS', Array) do |columns|
+      parser.on('--sort-by=COLUMNS', 'Sort lines by COLUMNS', Array) do |columns|
         formatter.sort_by = columns
       end
     end

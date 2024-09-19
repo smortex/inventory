@@ -71,6 +71,9 @@ module Motoko
           max_length: 20
         cpu:
           resolver: cpu
+        memory:
+          fact: memory.system.total
+          align: right
         os:
           resolver: os
           human_name: Operating System
